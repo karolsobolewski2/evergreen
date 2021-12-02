@@ -1,0 +1,172 @@
+<?php
+/**
+ * Template Name: Category
+ * Description: Subcategory page template.
+ */
+
+?>
+
+
+
+<?php
+
+/**
+ * A file to display subcategory
+ */
+
+get_header(); ?>
+<div class="slider" id="banner"> 
+<?php
+echo do_shortcode('[smartslider3 slider=3]');
+?>
+</div>
+
+<div class="main-wrapper" >
+
+
+<div id="sitebar" class="text-center">
+
+<form class="search-form" id="search-form" method="GET">
+            <?php $search_placeholder = $is_locale_en ? "Search" : "Wyszukiwarka"; ?>
+            <input class="input-text" name='s' value="<?php echo get_search_query(); ?>" placeholder="<?php echo $search_placeholder; ?>" />
+</form>
+
+<?php
+
+$parent_cat_arg = array('hide_empty' => false, 'parent' => 0,  'order'    => 'ASC',
+'orderby'  => '', 'exclude' => '1,454',
+'hierarchical' => 1, );
+$parent_cat = get_terms('category',$parent_cat_arg);//category name
+$a = 0;
+foreach ($parent_cat as $catVal) {
+    $a++;
+    ?>
+    <h3 class="product-categories categories" data-tab='<?php echo $a ?>'><a href="javascript:;""><?php echo $catVal->name ?></a></h3>
+    <?php
+        $args = array('post_type' => 'product',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'category',
+                'field' => 'slug',
+                'terms' => $custom_term->slug,
+            ),
+        ),
+     );
+    ?>
+    <?php 
+    wp_reset_query();
+        $child_arg = array( 'hide_empty' => false, 'parent' => $catVal->term_id );
+        $child_cat = get_terms( 'category', $child_arg );
+        echo '<ul id="tab-'.$a.'">';
+        $i = 0;
+        foreach( $child_cat as $child_term ) {
+            $i++;
+    ?>
+         
+         <li class="child-category"><a href=" <?php echo get_permalink(67180)?>category/<?php echo $catVal->slug.'/'.$child_term->slug  ?>"><?php echo $child_term->name  ?></a> </li>
+            <?php
+            $my_query = new WP_Query( $args );
+if( $my_query->have_posts() ) {
+    while ($my_query->have_posts()) : $my_query->the_post(); ?>
+        <ul><li><a href="#" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a><li></ul>
+        <?php            
+  
+endwhile;
+}
+
+
+       }
+    echo '</ul></li>';
+}
+
+wp_reset_query();
+?>
+    </div>
+
+
+
+    <div class="main-content">
+
+    <?php
+        $term = get_queried_object();
+        $idObj = get_category_by_slug( $term->slug );
+        $id = $idObj->term_id;
+        $get_parent_cats = array(
+            'parent' => $id //get top level categories only
+        );
+
+        $catObj = get_category_by_slug('category-slug'); 
+        $catName = $catObj->name;
+        $all_categories = get_categories( $get_parent_cats ); ?>
+
+        <?php
+            echo get_the_category(923);
+        ?>
+        <h1 class="category-name">Category</h1>
+
+        <?php
+        foreach( $all_categories as $single_category ){
+            //for each category, get the ID
+            $catID = $single_category->cat_ID;
+            ?>
+
+            <h3 class="subcategory-name"><?php echo $single_category->name ?></h3>
+
+            <div class="div-product-subcategory">
+
+
+                <?php $query = new WP_Query( array(
+                        'post_type' => 'product',
+                        'posts_per_page' => 3,
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'category',
+                                'field' => 'slug',
+                                'terms' => $single_category->slug,
+                            )
+                        )
+                    ));
+                ?>
+
+                <?php while ($query->have_posts()) : $query->the_post(); ?>
+
+                    <div class="single-product-subcategory">
+
+                        <div class="product-photo-container">
+
+                            <img class="single-product-subcategory-img" src="<?php echo IMG_URI; ?>book.png" />
+
+                        </div>
+
+                        <div class="product-name-subcategory">
+
+                            <p class="single-sub-name"><a href="<?php echo get_permalink() ?>"><?php echo the_title(); ?></a></p>
+
+                        </div>
+
+                        <div class="add-to-cart-sub">
+
+                            <button class="sub-cart-product"><add-to-cart>+ dodaj do wyceny</add-to-cart></button>
+
+                        </div>
+
+                    </div>
+
+                <?php endwhile; ?>
+
+                <!-- end of single div of product -->
+            </div>
+            <div class="subcategory-all-products-btn">
+
+                    <button class="all-products"><?php echo '<a href=" ' . get_category_link( $catID ) . ' ">' . $single_category->name . '</a>'; ?></button>
+
+            </div>
+
+        <?php } ?>
+
+
+
+</div>
+
+
+<?php get_footer(); ?>

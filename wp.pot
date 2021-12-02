@@ -1,0 +1,174 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: IDG-katalog\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-04 21:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.4.0; wp-5.2.5"
+
+#. Name of the template
+msgid "about"
+msgstr ""
+
+#: inc/assets.php:64
+msgctxt "Add to cart button component labels"
+msgid "Dodaj do koszyka"
+msgstr ""
+
+#: inc/assets.php:62
+msgctxt "Add to cart button component labels"
+msgid "Ilość"
+msgstr ""
+
+#: inc/assets.php:63
+msgctxt "Add to cart button component labels"
+msgid "Znakowanie"
+msgstr ""
+
+#. Name of the template
+msgid "blog"
+msgstr ""
+
+#: inc/assets.php:48
+msgctxt "Cart modal - labels tooltips"
+msgid "BEZ ZNAKOWANIA"
+msgstr ""
+
+#: inc/assets.php:50
+msgctxt "Cart modal - labels tooltips"
+msgid "Dodaj"
+msgstr ""
+
+#: inc/assets.php:57
+msgctxt "Cart modal - labels tooltips"
+msgid "E-mail"
+msgstr ""
+
+#: inc/assets.php:51
+msgctxt "Cart modal - labels tooltips"
+msgid "Ilość"
+msgstr ""
+
+#: inc/assets.php:53
+msgctxt "Cart modal - labels tooltips"
+msgid "Imię"
+msgstr ""
+
+#: inc/assets.php:46
+msgctxt "Cart modal - labels tooltips"
+msgid "Koszyk"
+msgstr ""
+
+#: inc/assets.php:54
+msgctxt "Cart modal - labels tooltips"
+msgid "Nazwisko"
+msgstr ""
+
+#: inc/assets.php:55
+msgctxt "Cart modal - labels tooltips"
+msgid "NIP"
+msgstr ""
+
+#: inc/assets.php:49
+msgctxt "Cart modal - labels tooltips"
+msgid "Odejmij"
+msgstr ""
+
+#: inc/assets.php:61
+msgctxt "Cart modal - labels tooltips"
+msgid "OK"
+msgstr ""
+
+#: inc/assets.php:45
+msgctxt "Cart modal - labels tooltips"
+msgid "Pokaż koszyk"
+msgstr ""
+
+#: inc/assets.php:56
+msgctxt "Cart modal - labels tooltips"
+msgid "Telefon"
+msgstr ""
+
+#: inc/assets.php:59
+msgctxt "Cart modal - labels tooltips"
+msgid "Twój koszyk jest pusty"
+msgstr ""
+
+#: inc/assets.php:52
+msgctxt "Cart modal - labels tooltips"
+msgid "Usuń z koszyka"
+msgstr ""
+
+#: inc/assets.php:60
+msgctxt "Cart modal - labels tooltips"
+msgid "Wysłano zapytanie"
+msgstr ""
+
+#: inc/assets.php:58
+msgctxt "Cart modal - labels tooltips"
+msgid "Wyślij zapytanie"
+msgstr ""
+
+#: inc/assets.php:47
+msgctxt "Cart modal - labels tooltips"
+msgid "ZE ZNAKOWANIEM"
+msgstr ""
+
+#: inc/assets.php:44
+msgctxt "Cart modal - validation message"
+msgid "E-mail jest nieprawidłowy"
+msgstr ""
+
+#: inc/assets.php:43
+msgctxt "Cart modal - validation message"
+msgid "E-mail jest wymagany"
+msgstr ""
+
+#: inc/assets.php:39
+msgctxt "Cart modal - validation message"
+msgid "Imię nie może być puste"
+msgstr ""
+
+#: inc/assets.php:40
+msgctxt "Cart modal - validation message"
+msgid "Nazwisko nie może być puste"
+msgstr ""
+
+#: inc/assets.php:42
+msgctxt "Cart modal - validation message"
+msgid "NIP jest nieprawidłowy"
+msgstr ""
+
+#: inc/assets.php:41
+msgctxt "Cart modal - validation message"
+msgid "NIP jest wymagany"
+msgstr ""
+
+#. Name of the template
+msgid "Home"
+msgstr ""
+
+#. Name of the theme
+msgid "IDG-katalog"
+msgstr ""
+
+#. Name of the template
+msgid "kontakt"
+msgstr ""
+
+#: index.php:221
+msgid "No search results"
+msgstr ""
+
+#. Author of the theme
+msgid "Oskar Adasiewicz"
+msgstr ""

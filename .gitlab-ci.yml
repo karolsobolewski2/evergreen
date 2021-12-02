@@ -1,0 +1,60 @@
+variables:
+  GIT_STRATEGY: none
+
+stages:
+  - build
+  - deploy
+
+# Build dist pack
+build:
+  stage: build
+  only:
+    - develop
+    - master
+  variables:
+      GIT_STRATEGY: clone
+  tags:
+    - evergreen
+  script:
+    - yarn install
+    - yarn gulp build-css
+    - yarn gulp build-js
+  after_script:
+    - '[ -d .git ] && rm -rf .git'
+    - '[ -e .gitignore ] && rm .gitignore'
+    - '[ -e .gitattributes ] && rm .gitattributes'
+    - '[ -e .gitlab-ci.yml ] && rm .gitlab-ci.yml'
+    - '[ -e .editorconfig ] && rm .editorconfig'
+    - '[ -e yarn.lock ] && rm yarn.lock'
+    - '[ -e package-lock.json ] && rm package-lock.json'
+    - '[ -d src ] && rm -rf src'
+    - '[ -e gulpfile.js ] && rm gulpfile.js'
+    - '[ -d node_modules ] && rm -rf node_modules'
+    - '[ -e pack.zip ] && rm pack.zip'
+    - zip -r ../pack.zip .
+    - mv ../pack.zip ./pack.zip
+    - echo "$SELF_REMOVE_SCRIPT" > "$(pwd)/self-cleanup.php"
+
+
+#  artifacts:
+#      expire_in: 1 week
+#      paths:
+#        - ./
+
+# Deploy to develop environment
+deploy_develop:
+  stage: deploy
+  environment: Develop
+  only:
+    - develop
+  tags:
+    - evergreen
+  script:
+    - lftp -e "mput -O $FTP_PATH ./self-cleanup.php" -u $FTP_USER,$FTP_PASSWORD $FTP_HOST
+    - curl http://evergreen.k-org.pl/wp-content/themes/evergreen/self-cleanup.php
+    - lftp -e "mput -O $FTP_PATH ./unzipper.php ./pack.zip" -u $FTP_USER,$FTP_PASSWORD $FTP_HOST
+    - curl http://evergreen.k-org.pl/wp-content/themes/evergreen/unzipper.php
+    - lftp -e "rm $FTP_PATH/unzipper.php" -u $FTP_USER,$FTP_PASSWORD $FTP_HOST
+    - lftp -e "rm $FTP_PATH/pack.zip" -u $FTP_USER,$FTP_PASSWORD $FTP_HOST
+
+    # - lftp -e "mirror -R ./ $FTP_PATH" -u $FTP_USER,$FTP_PASSWORD $FTP_HOST
