@@ -6,6 +6,5 @@
 
 get_header(); ?>
 
-<h1><center>Zły adres strony!</h1>
 
 <?php get_footer(); ?>
